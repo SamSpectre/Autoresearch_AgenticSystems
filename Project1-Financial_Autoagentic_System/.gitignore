@@ -14,21 +14,28 @@ build/
 dist/
 wheels/
 
+# AI tools (private)
+.claude/
+CLAUDE.md
+AGENTS.md
+
 # IDE
 .vscode/
 .idea/
+.cursor/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Tool configs
-.claude/
-
-# Experiment artifacts
-results.tsv
+# Runtime artifacts
 run.log
+*.log
 worktrees/
 queue/
-results/
-dev/
+
+# Debug scripts
+scripts/debug_*.py
+
+# UV lock (regenerated)
+uv.lock

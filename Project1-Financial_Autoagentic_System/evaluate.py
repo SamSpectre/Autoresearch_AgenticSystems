@@ -280,8 +280,12 @@ def evaluate(
     for ticker in tickers:
         # Load ground truth
         gt_path = GROUND_TRUTH_DIR / f"{ticker.lower()}.json"
-        with open(gt_path) as f:
-            ground_truth = json.load(f)
+        try:
+            with open(gt_path, encoding="utf-8") as f:
+                ground_truth = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"  [ERROR] Failed to load ground truth for {ticker}: {e}")
+            continue
 
         # Run pipeline
         pipeline_stats = UsageStats()

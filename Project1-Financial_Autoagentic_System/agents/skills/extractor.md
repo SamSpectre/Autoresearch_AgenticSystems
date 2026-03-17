@@ -48,7 +48,7 @@ Return valid JSON with exactly this structure:
 </output_schema>
 
 <rules>
-- All dollar amounts in WHOLE DOLLARS, not thousands or millions. If the filing says "$391.0 billion", output 391000000000.
+- All dollar amounts in WHOLE DOLLARS. Check the table header for unit indicators like "(in millions)", "(Millions of dollars)", or "(in thousands)." Most 10-K filings report in millions — if a table header says "in millions" and a line item shows "$98,585", output 98585000000 (multiply by 1,000,000). If "in billions", multiply by 1,000,000,000. If "in thousands", multiply by 1,000. Always apply the correct multiplier before outputting any dollar amount.
 - Margins as decimals between 0 and 1. If gross margin is 46.2%, output 0.462.
 - Use the MOST RECENT fiscal year data in the filing.
 - If a field cannot be determined from the filing text, use null.

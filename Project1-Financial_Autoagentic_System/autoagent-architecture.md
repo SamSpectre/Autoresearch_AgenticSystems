@@ -78,7 +78,7 @@ Each agent is a function that:
 
 ## Outer Loop: The Optimizer (Autoresearch Pattern)
 
-This is a separate agent (or a Claude Code / bash while-loop) that modifies the skill files.
+This is a separate optimizer agent (running in a bash while-loop) that modifies the skill files.
 
 ```
 START
@@ -322,7 +322,7 @@ phase2 = [
 ### Week 3: Optimizer loop
 
 1. `optimizer_program.md` -- full instructions for the optimizer
-2. `scripts/run_optimizer.sh` -- bash while-loop (or Claude Code invocation)
+2. `scripts/run_optimizer.sh` -- bash while-loop for continuous optimization
 3. First real optimization session: 20-30 experiments
 
 **Milestone:** results.tsv with 20+ rows, composite_score improved from baseline.

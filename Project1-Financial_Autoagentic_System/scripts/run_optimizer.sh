@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 # AutoAgent Optimizer Loop (Bash - Linux/RunPod)
 # ================================================
-# Equivalent to Karpathy's: while :; do cat program.md | claude-code; done
+# Runs the optimizer agent in a continuous loop.
+# Each iteration: read history, modify a skill, evaluate, keep/discard.
 #
 # Usage:
 #   chmod +x scripts/run_optimizer.sh
 #   ./scripts/run_optimizer.sh
 #
 # Prerequisites:
-#   - Claude Code installed and authenticated
+#   - LLM CLI tool installed and authenticated
 #   - Git initialized in the project directory
 #   - results.tsv initialized with baseline
 #
 # To stop: Ctrl+C
 
-set -e
+# NOTE: Do NOT use "set -e" here — if the optimizer exits non-zero
+# (timeout, error, etc.), the loop must continue to the next iteration.
+set +e
 
 # Initialize results.tsv with baseline if it doesn't exist
 if [ ! -f "results.tsv" ]; then
@@ -46,8 +49,12 @@ while true; do
     echo "$(date '+%Y-%m-%d %H:%M:%S')"
     echo ""
 
-    # Run Claude Code with the optimizer program
-    claude "Read optimizer_program.md and execute ONE experiment iteration. Read results.tsv first to see what has been tried. Make one focused change to a skill file, run the evaluation, and decide keep or discard. Update results.tsv with the result."
+    # Run the optimizer agent with the program instructions
+    # --max-turns limits tool calls so it auto-exits after the experiment
+    # If it hangs or crashes, the loop continues to the next iteration
+    llm-optimizer --max-turns 50 \
+        "Read optimizer_program.md and execute ONE experiment iteration. Read results.tsv first to see what has been tried. Make one focused change to a skill file, run the evaluation, and decide keep or discard. Update results.tsv with the result." \
+        || echo "[WARN] Iteration $ITERATION exited with code $? — continuing..."
 
     ITERATION=$((ITERATION + 1))
 

@@ -1,13 +1,13 @@
 # AutoAgent Optimizer Loop (PowerShell - Windows)
 # ================================================
-# This is the outer loop that runs the optimizer continuously.
-# Equivalent to: while :; do cat program.md | claude-code; done
+# Runs the optimizer agent in a continuous loop.
+# Each iteration: read history, modify a skill, evaluate, keep/discard.
 #
 # Usage:
 #   .\scripts\run_optimizer.ps1
 #
 # Prerequisites:
-#   - Claude Code installed and authenticated (npm install -g @anthropic-ai/claude-code)
+#   - LLM CLI tool installed and authenticated
 #   - Git initialized in the project directory
 #   - results.tsv initialized with baseline
 #
@@ -45,14 +45,14 @@ while ($true) {
     Write-Host "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     Write-Host ""
 
-    # Run Claude Code with the optimizer program
-    # Claude Code reads optimizer_program.md and autonomously:
+    # Run the optimizer agent with the program instructions
+    # The optimizer reads optimizer_program.md and autonomously:
     #   1. Reads results.tsv for history
     #   2. Modifies a skill file
     #   3. Runs evaluate.py
     #   4. Decides keep/discard
     #   5. Updates results.tsv
-    claude "Read optimizer_program.md and execute ONE experiment iteration. Read results.tsv first to see what has been tried. Make one focused change to a skill file, run the evaluation, and decide keep or discard. Update results.tsv with the result."
+    llm-optimizer "Read optimizer_program.md and execute ONE experiment iteration. Read results.tsv first to see what has been tried. Make one focused change to a skill file, run the evaluation, and decide keep or discard. Update results.tsv with the result."
 
     $iteration++
 
