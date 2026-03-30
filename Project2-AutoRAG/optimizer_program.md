@@ -101,9 +101,9 @@ For fast testing (10 questions):
 uv run evaluate.py --split dev --max-questions 10 --verbose
 ```
 
-For full evaluation (500 questions):
+For full evaluation (100 questions, budget-constrained ~$0.78/run):
 ```bash
-uv run evaluate.py --split dev > run.log 2>&1
+uv run evaluate.py --split dev --max-questions 100 > run.log 2>&1
 ```
 
 ### 5. Read Results
@@ -177,4 +177,5 @@ Example:
 - Do NOT modify data files
 - Do NOT run evaluations on the test split (reserve for final report)
 - Keep skill files under 200 lines each
-- Each full eval takes ~15-20 min and costs ~$2-3 in API calls
+- Each eval (100 questions) takes ~12 min and costs ~$0.78 in API calls
+- Total budget: $15. Track spending via run.log total_cost_usd
