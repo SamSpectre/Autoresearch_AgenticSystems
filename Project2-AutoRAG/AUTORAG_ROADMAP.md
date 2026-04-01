@@ -1,8 +1,8 @@
 # AutoRAG Project Roadmap & Future Scope
 
-## Context for Claude Code
+## Context
 
-You are helping Sam build AutoRAG (Project 2 in the autoresearch portfolio). Project 1 (AutoAgent) is complete and published -- SEC 10-K extraction pipeline with Karpathy-style optimizer loop, composite score 0.7235 to 0.7340 across 5 experiments.
+Project 1 (AutoAgent) is complete and published -- SEC 10-K extraction pipeline with Karpathy-style optimizer loop, composite score 0.7235 to 0.7340 across 5 experiments.
 
 ## Current State
 

@@ -7,7 +7,7 @@
 #   .\scripts\run_optimizer.ps1
 #
 # Prerequisites:
-#   - Claude Code CLI installed and authenticated
+#   - LLM CLI agent installed and authenticated
 #   - Git initialized with baseline committed
 #   - results.tsv initialized with baseline
 #   - Vector index built (uv run scripts/build_index.py --eval-only --force)

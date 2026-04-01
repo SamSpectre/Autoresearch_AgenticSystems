@@ -7,7 +7,7 @@
 #   .\scripts\run_optimizer.ps1
 #
 # Prerequisites:
-#   - LLM CLI tool installed and authenticated
+#   - LLM CLI agent installed and authenticated
 #   - Git initialized in the project directory
 #   - results.tsv initialized with baseline
 #
