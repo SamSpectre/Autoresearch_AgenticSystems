@@ -17,3 +17,4 @@ experiment_id	decision	old_score	new_score	files_modified	reindexed	description
 015	discard	0.360000	0.320000	answer_generator.md	no	Added "don't use world knowledge" reinforcement. Hallucination 10%->13%. Confused model's confidence calibration.
 016	discard	0.360000	0.310000	config.yaml	no	Changed top_k 5->7. Hallucination 10%->15% (more chunks = more noise). Accuracy same at 46%.
 017	discard	0.360000	0.230000	config.yaml	yes	chunk_size 512->256, overlap 100->50. Accuracy 46%->35%, 53 missing. Chunks too small for complete answers.
+018	discard	0.360000	-	config.yaml	yes	chunk_size 512->1024, overlap 100->200. FAILED: OpenAI 300k token/request limit exceeded. Can't use without code changes.
